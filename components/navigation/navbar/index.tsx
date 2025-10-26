@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ThemeToggle } from "./theme-toggle";
 
 export default function Navbar() {
   return (
-    <nav className='flex-between background-light900_dark200 fixed z-50 w-full p-6 dark:shadow-none shadow-light-500 sm:px-12 gap-5'>
+    <nav className='flex-between background-light900_dark200 fixed z-50 w-full p-6 dark:shadow-none shadow-light-100 sm:px-12 gap-5'>
       <Link href='/' className='flex items-center gap-2'>
         <Image
           src='/images/site-logo.svg'
@@ -18,7 +19,7 @@ export default function Navbar() {
 
       <p>Global search here</p>
 
-      <p>theme picker here</p>
+      <ThemeToggle />
     </nav>
   );
 }

@@ -21,6 +21,9 @@ export const metadata: Metadata = {
     Get help, share knowledge, and collaborate with developers from around the world. 
     Explore topics in web development, mobile app development, algorithms, data structures, and more.
   `,
+  icons: {
+    icon: "/images/site-logo.svg",
+  },
 };
 
 export default function RootLayout({

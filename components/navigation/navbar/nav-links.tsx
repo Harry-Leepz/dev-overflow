@@ -47,12 +47,17 @@ export default function NavLinks({ isMobileNav = false }: NavLinksProps) {
               alt={item.label}
               width={20}
               height={20}
-              className={cn({ "invert-colors:": !isActive })}
+              className={cn(
+                // white icons → medium gray in light mode, stay white in dark mode
+                "invert dark:invert-0 brightness-[0.3] dark:brightness-100",
+                isActive && "opacity-100",
+                !isActive && "opacity-80"
+              )}
             />
             <p
               className={cn(
                 isActive ? "base-bold" : "base-medium",
-                !isMobileNav && "max-lg:hadden"
+                !isMobileNav && "max-lg:hidden"
               )}
             >
               {item.label}

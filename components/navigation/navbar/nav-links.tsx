@@ -1,10 +1,15 @@
 "use client";
 
-import { SIDEBAR_LINKS } from "@/constants/sidebar-links";
-import { cn } from "@/lib/utils";
+import React from "react";
+
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
+import { SheetClose } from "@/components/ui/sheet";
+
+import { cn } from "@/lib/utils";
+import { SIDEBAR_LINKS } from "@/constants/sidebar-links";
 
 type NavLinksProps = {
   isMobileNav?: boolean;
@@ -12,6 +17,7 @@ type NavLinksProps = {
 
 export default function NavLinks({ isMobileNav = false }: NavLinksProps) {
   const pathname = usePathname();
+  const userId = 1; // Replace with actual user ID retrieval logic
 
   return (
     <>
@@ -19,6 +25,11 @@ export default function NavLinks({ isMobileNav = false }: NavLinksProps) {
         const isActive =
           (pathname.includes(item.route) && item.route.length > 1) ||
           pathname === item.route;
+
+        if (item.route === "/profile") {
+          if (userId) item.route = `/profile/${userId}`;
+          else return null;
+        }
 
         const LinkComponent = (
           <Link
@@ -49,7 +60,13 @@ export default function NavLinks({ isMobileNav = false }: NavLinksProps) {
           </Link>
         );
 
-        return LinkComponent;
+        return isMobileNav ? (
+          <SheetClose asChild key={item.label}>
+            {LinkComponent}
+          </SheetClose>
+        ) : (
+          <React.Fragment key={item.label}>{LinkComponent}</React.Fragment>
+        );
       })}
     </>
   );

@@ -1,3 +1,4 @@
+import SocialAuthForm from "@/components/forms/social-auth-form";
 import Image from "next/image";
 
 type AuthLayoutProps = {
@@ -6,7 +7,7 @@ type AuthLayoutProps = {
 
 export default function AuthLayout({ children }: AuthLayoutProps) {
   return (
-    <main className='flex min-h-screen items-center justify-center bg-auth-dark dark:bg-auth-dark bg-cover bg-center bg-no-repeat px-4 py-10'>
+    <main className='flex min-h-screen items-center justify-center bg-auth-light dark:bg-auth-dark bg-cover bg-center bg-no-repeat px-4 py-10'>
       <section className='light-border background-light800_dark200 shadow-light100_dark100 min-w-full rounded-[10px] border px-4 py-10 shadow-md sm:min-w-[520px] sm:px-8'>
         <div className='flex items-center justify-between gap-2'>
           <div className='space-y-2 5'>
@@ -27,7 +28,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
 
         {children}
 
-        <p>social auth login links</p>
+        <SocialAuthForm />
       </section>
     </main>
   );

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ThemeToggle } from "./theme-toggle";
+import MobileNav from "../mobile-nav";
 
 export default function Navbar() {
   return (
@@ -20,6 +21,8 @@ export default function Navbar() {
       <p>Global search here</p>
 
       <ThemeToggle />
+
+      <MobileNav />
     </nav>
   );
 }

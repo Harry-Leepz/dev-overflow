@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/sheet";
 import ROUTES from "@/constants/routes";
 import { Button } from "@/components/ui/button";
+import NavLinks from "../navbar/nav-links";
 
 export default function MobileNav() {
   return (
@@ -44,7 +45,7 @@ export default function MobileNav() {
         <div className='no-scrollbar flex flex-col justify-between overflow-y-auto h-[calc(100vh-80px)]'>
           <SheetClose asChild>
             <section className='flex h-full flex-col gap-6 pt-16'>
-              <p>NAV LINKS HERE</p>
+              <NavLinks isMobileNav />
             </section>
           </SheetClose>
 

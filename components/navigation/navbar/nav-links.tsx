@@ -49,7 +49,7 @@ export default function NavLinks({ isMobileNav = false }: NavLinksProps) {
               height={20}
               className={cn(
                 // white icons → medium gray in light mode, stay white in dark mode
-                "invert dark:invert-0 brightness-[0.3] dark:brightness-100",
+                "invert dark:invert-0 brightness-[0.9] dark:brightness-100",
                 isActive && "opacity-100",
                 !isActive && "opacity-80"
               )}

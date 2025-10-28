@@ -26,11 +26,12 @@ export default function MobileNav() {
       </SheetTrigger>
       <SheetContent
         side='left'
-        className='background-light900_dark200 border-none p-5'
+        className='background-light900_dark200 border-none p-5 flex flex-col h-full'
       >
         <SheetTitle className='hidden'>Navigation</SheetTitle>
 
-        <Link href='/' className='flex items-center gap-1'>
+        {/* Logo */}
+        <Link href='/' className='flex items-center gap-1 mb-6'>
           <Image
             src='/images/site-logo.svg'
             alt='Dev Overflow Logo'
@@ -42,30 +43,32 @@ export default function MobileNav() {
           </p>
         </Link>
 
-        <div className='no-scrollbar flex flex-col justify-between overflow-y-auto h-[calc(100vh-80px)]'>
+        {/* Scrollable nav section */}
+        <div className='flex-1 overflow-y-auto no-scrollbar'>
           <SheetClose asChild>
-            <section className='flex h-full flex-col gap-6 pt-16'>
+            <section className='flex flex-col gap-6 pt-4'>
               <NavLinks isMobileNav />
             </section>
           </SheetClose>
+        </div>
 
-          <div className='flex flex-col gap-3'>
-            <SheetClose asChild>
-              <Link href={ROUTES.SIGN_IN}>
-                <Button className='small-medium btn-secondary min-h-[50px] w-full rounded-lg px-4 py-3 shadow-none'>
-                  <span className='primary-text-gradient'>Sign In</span>
-                </Button>
-              </Link>
-            </SheetClose>
+        {/* Fixed footer buttons */}
+        <div className='mt-4 flex flex-col gap-3'>
+          <SheetClose asChild>
+            <Link href={ROUTES.SIGN_IN}>
+              <Button className='small-medium btn-secondary min-h-[45px] w-full rounded-lg px-4 py-3 shadow-none'>
+                <span className='primary-text-gradient'>Sign In</span>
+              </Button>
+            </Link>
+          </SheetClose>
 
-            <SheetClose asChild>
-              <Link href={ROUTES.SIGN_UP}>
-                <Button className='small-medium light-border-2 btn-tertiary text-dark400_light900 min-h-[50px] w-full rounded-lg border px-4 py-3 shadow-none'>
-                  <span>Sign Up</span>
-                </Button>
-              </Link>
-            </SheetClose>
-          </div>
+          <SheetClose asChild>
+            <Link href={ROUTES.SIGN_UP}>
+              <Button className='small-medium light-border-2 btn-tertiary text-dark400_light900 min-h-[45px] w-full rounded-lg border px-4 py-3 shadow-none'>
+                <span>Sign Up</span>
+              </Button>
+            </Link>
+          </SheetClose>
         </div>
       </SheetContent>
     </Sheet>

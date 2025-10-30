@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 import ROUTES from "@/constants/routes";
+import Search from "@/components/search";
 
 export default async function Home() {
   return (
@@ -17,7 +18,14 @@ export default async function Home() {
           <Link href={ROUTES.ASK_QUESTION}>Ask A Question</Link>
         </Button>
       </section>
-      <section className='mt-11'>Local Search goes here</section>
+      <section className='mt-11'>
+        <Search
+          route='/'
+          imgSrc='/icons/search.svg'
+          placeholder='Search for questions here..'
+          otherClasses='flex-1'
+        />
+      </section>
       Local Search
       <div className='mt-10 flex w-full flex-col gap-6'>
         <p>Question 1</p>

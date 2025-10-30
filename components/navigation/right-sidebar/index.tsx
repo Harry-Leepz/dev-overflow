@@ -1,6 +1,7 @@
-import ROUTES from "@/constants/routes";
 import Image from "next/image";
 import Link from "next/link";
+import TagCard from "@/components/cards";
+import ROUTES from "@/constants/routes";
 
 const questionsArray = [
   { _id: "1", title: "How to center a div in CSS?" },
@@ -11,6 +12,24 @@ const questionsArray = [
   { _id: "3", title: "How to create a responsive layout using Flexbox?" },
   { _id: "4", title: "What are closures in JavaScript?" },
   { _id: "5", title: "How to optimize React application performance?" },
+];
+
+const popularTags = [
+  {
+    _id: "1",
+    name: "next js",
+    questions: 5,
+  },
+  {
+    _id: "2",
+    name: "javaScript",
+    questions: 8,
+  },
+  {
+    _id: "3",
+    name: "react",
+    questions: 12,
+  },
 ];
 
 export default function RightSidebar() {
@@ -36,6 +55,23 @@ export default function RightSidebar() {
               />
             </Link>
           ))}
+        </div>
+
+        <div className='mt-16'>
+          <h3 className='h3-bold text-dark200_light900'>Popular Tags</h3>
+
+          <div className='flex flex-col mt-7 gap-4'>
+            {popularTags.map(({ _id, name, questions }) => (
+              <TagCard
+                key={_id}
+                _id={_id}
+                name={name}
+                questions={questions}
+                showCount
+                compact
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

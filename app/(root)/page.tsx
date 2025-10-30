@@ -1,29 +1,31 @@
-import { auth, signOut } from "@/auth";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
+
 import ROUTES from "@/constants/routes";
 
 export default async function Home() {
-  const session = await auth();
-
-  console.log(session);
-
   return (
-    <main>
-      <h1 className='h1-bold font-space-grotesk'>Hello, Next.js!</h1>
+    <>
+      <section className='w-full flex flex-col-reverse sm:flex-row justify-between gap-4 sm:items-center'>
+        <h1 className='h1-bold text-dark100_light900'>All Questions</h1>
 
-      <form
-        action={async () => {
-          "use server";
-          await signOut({
-            redirectTo: ROUTES.SIGN_IN,
-          });
-        }}
-      >
-        <Button className='mt-10' type='submit'>
-          Log out
+        <Button
+          className='primary-gradient min-h-[46px] px-4 py-3 text-light-900!'
+          asChild
+        >
+          <Link href={ROUTES.ASK_QUESTION}>Ask A Question</Link>
         </Button>
-      </form>
-    </main>
+      </section>
+      <section className='mt-11'>Local Search goes here</section>
+      Local Search
+      <div className='mt-10 flex w-full flex-col gap-6'>
+        <p>Question 1</p>
+        <p>Question 2</p>
+        <p>Question 3</p>
+        <p>Question 4</p>
+        <p>Question 5</p>
+      </div>
+    </>
   );
 }

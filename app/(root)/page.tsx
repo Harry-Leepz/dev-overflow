@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 
 import ROUTES from "@/constants/routes";
 import Search from "@/components/search";
+import Filters from "@/components/filters";
 
 export default async function Home() {
   return (
@@ -26,7 +27,7 @@ export default async function Home() {
           otherClasses='flex-1'
         />
       </section>
-      Local Search
+      <Filters />
       <div className='mt-10 flex w-full flex-col gap-6'>
         <p>Question 1</p>
         <p>Question 2</p>

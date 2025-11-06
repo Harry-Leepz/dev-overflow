@@ -4,6 +4,7 @@ import { formatDate } from "@/lib/utils";
 import { Question, Tag } from "@/types/question";
 import Link from "next/link";
 import TagCard from "./tag-card";
+import Metric from "../metric";
 
 type QuestionCardProps = {
   question: Question;
@@ -32,6 +33,43 @@ export default function QuestionCard({
         {tags.map((tag: Tag) => (
           <TagCard key={tag._id} _id={tag._id} name={tag.name} compact />
         ))}
+      </div>
+
+      <div className='flex-between mt-6 w-full flex-wrap gap-3'>
+        <Metric
+          imgUrl={author.image}
+          altText={author.name}
+          value={author.name}
+          title={`• asked ${formatDate(createdAt)}`}
+          href={ROUTES.PROFILE(author._id)}
+          isAuthor
+          textStyles='body-medium text-dark400_light700'
+          titleStyles='sm:hidden'
+        />
+
+        <div className='flex items-center gap-3 max-sm:flex-wrap max-sm:justify-start'>
+          <Metric
+            imgUrl={"/icons/like.svg"}
+            altText='like'
+            value={upvotes}
+            title=' Votes'
+            textStyles='small-medium text-dark400_light800'
+          />
+          <Metric
+            imgUrl={"/icons/message.svg"}
+            altText='answers'
+            value={answers}
+            title=' Answers'
+            textStyles='small-medium text-dark400_light800'
+          />
+          <Metric
+            imgUrl={"/icons/eye.svg"}
+            altText='views'
+            value={views}
+            title=' Views'
+            textStyles='small-medium text-dark400_light800'
+          />
+        </div>
       </div>
     </div>
   );

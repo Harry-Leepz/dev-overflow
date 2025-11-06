@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import TagCard from "@/components/cards";
+import TagCard from "@/components/cards/tag-card";
 import ROUTES from "@/constants/routes";
 
 const questionsArray = [

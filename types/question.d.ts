@@ -1,4 +1,4 @@
-type Tags = {
+type Tag = {
   _id: string;
   name: string;
 };
@@ -12,7 +12,7 @@ type Author = {
 export type Question = {
   _id: string;
   title: string;
-  tags: Tags[];
+  tags: Tag[];
   author: Author;
   upvotes: number;
   answers: number;

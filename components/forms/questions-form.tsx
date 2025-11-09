@@ -1,8 +1,11 @@
 "use client";
 
+import { useRef } from "react";
+import dynamic from "next/dynamic";
 import z from "zod";
 import { useForm } from "react-hook-form";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
+import { MDXEditorMethods } from "@mdxeditor/editor";
 
 import {
   Form,
@@ -18,7 +21,14 @@ import { Input } from "../ui/input";
 import { AskQuestionSchema } from "@/lib/validations";
 import { Button } from "../ui/button";
 
+const Editor = dynamic(() => import("@/components/editor"), {
+  // Make sure we turn SSR off
+  ssr: false,
+});
+
 export default function QuestionForm() {
+  const editorRef = useRef<MDXEditorMethods>(null);
+
   const form = useForm<z.infer<typeof AskQuestionSchema>>({
     resolver: standardSchemaResolver(AskQuestionSchema),
     defaultValues: {
@@ -70,7 +80,13 @@ export default function QuestionForm() {
                 Detailed explanation of your problem{" "}
                 <span className='text-primary-500'>*</span>
               </FormLabel>
-              <FormControl>Editor</FormControl>
+              <FormControl>
+                <Editor
+                  value={field.value}
+                  editorRef={editorRef}
+                  fieldChange={field.onChange}
+                />
+              </FormControl>
               <FormDescription className='body-regular text-light-500 mt-2.5'>
                 Introduce the problem and expand on what you put in the title.
               </FormDescription>

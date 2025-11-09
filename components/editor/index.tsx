@@ -12,6 +12,8 @@ import {
   type MDXEditorMethods,
 } from "@mdxeditor/editor";
 
+import "./dark-editor.css";
+
 type EditorProps = {
   value: string;
   fieldChange: (value: string) => void;
@@ -26,6 +28,7 @@ export default function Editor({
 }: EditorProps) {
   return (
     <MDXEditor
+      className='background-light800_dark200 light-border-2 markdown-editor dark-editor w-full border'
       markdown={value}
       onChange={fieldChange}
       plugins={[

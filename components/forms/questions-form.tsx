@@ -20,6 +20,7 @@ import { Input } from "../ui/input";
 
 import { AskQuestionSchema } from "@/lib/validations";
 import { Button } from "../ui/button";
+import TagCard from "../cards/tag-card";
 
 const Editor = dynamic(() => import("@/components/editor"), {
   // Make sure we turn SSR off
@@ -40,6 +41,37 @@ export default function QuestionForm() {
 
   function handleCreateQuestion() {
     // TODO: Implement question creation logic
+  }
+
+  function handleTagInput(
+    e: React.KeyboardEvent<HTMLInputElement>,
+    field: { value: string[] }
+  ) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const newTag = e.currentTarget.value.trim();
+
+      if (newTag && newTag.length < 15 && !field.value.includes(newTag)) {
+        form.setValue("tags", [...field.value, newTag]);
+        e.currentTarget.value = "";
+        form.clearErrors("tags");
+      } else if (newTag.length > 15) {
+        form.setError("tags", {
+          type: "manual",
+          message: "Tag should be less than 15 characters.",
+        });
+      } else if (field.value.includes(newTag)) {
+        form.setError("tags", {
+          type: "manual",
+          message: "Tag is already added.",
+        });
+      }
+    }
+  }
+
+  function handleRemoveTag(tagToRemove: string, field: { value: string[] }) {
+    const updatedTags = field.value.filter((tag) => tag !== tagToRemove);
+    form.setValue("tags", updatedTags);
   }
 
   return (
@@ -106,11 +138,25 @@ export default function QuestionForm() {
               <FormControl>
                 <div>
                   <Input
-                    {...field}
                     className='paragraph-regular background-light700_dark300 light-border-2 text-dark300_light700 no-focus min-h-14 border'
                     placeholder='Add tags...'
+                    onKeyDown={(e) => handleTagInput(e, field)}
                   />
-                  Tags
+                  {field.value.length > 0 && (
+                    <div className='flex-start mt-2.5 flex-wrap gap-2.5'>
+                      {field.value.map((tag, index) => (
+                        <TagCard
+                          key={index}
+                          _id={tag}
+                          name={tag}
+                          compact
+                          remove
+                          isButton
+                          handleRemove={() => handleRemoveTag(tag, field)}
+                        />
+                      ))}
+                    </div>
+                  )}
                 </div>
               </FormControl>
               <FormDescription className='body-regular text-light-500 mt-2.5'>

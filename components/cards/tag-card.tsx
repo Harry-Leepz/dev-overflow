@@ -10,6 +10,9 @@ type TagCardProps = {
   questions?: number;
   showCount?: boolean;
   compact?: boolean;
+  remove?: boolean;
+  isButton?: boolean;
+  handleRemove?: () => void;
 };
 
 export default function TagCard({
@@ -18,6 +21,9 @@ export default function TagCard({
   questions,
   showCount,
   compact,
+  remove,
+  isButton,
+  handleRemove,
 }: TagCardProps) {
   const iconClassName = getDeviconClassName(name);
 

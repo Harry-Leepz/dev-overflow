@@ -53,7 +53,7 @@ export default function Editor({
   return (
     <MDXEditor
       key={resolvedTheme}
-      className='background-light800_dark200 light-border-2 markdown-editor dark-editor w-full border'
+      className='background-light800_dark200 light-border-2 markdown-editor dark-editor w-full border grid'
       markdown={value}
       onChange={fieldChange}
       plugins={[

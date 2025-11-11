@@ -39,8 +39,9 @@ export default function QuestionForm() {
     },
   });
 
-  function handleCreateQuestion() {
+  function handleCreateQuestion(data: z.infer<typeof AskQuestionSchema>) {
     // TODO: Implement question creation logic
+    console.log(data);
   }
 
   function handleTagInput(

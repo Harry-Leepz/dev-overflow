@@ -72,6 +72,11 @@ export default function QuestionForm() {
   function handleRemoveTag(tagToRemove: string, field: { value: string[] }) {
     const updatedTags = field.value.filter((tag) => tag !== tagToRemove);
     form.setValue("tags", updatedTags);
+
+    form.setError("tags", {
+      type: "manual",
+      message: "Tags are required",
+    });
   }
 
   return (

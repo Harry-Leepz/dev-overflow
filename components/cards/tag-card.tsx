@@ -29,6 +29,10 @@ export default function TagCard({
 }: TagCardProps) {
   const iconClassName = getDeviconClassName(name);
 
+  function handleButtonClick(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+  }
+
   const content = (
     <>
       <Badge className='subtle-medium background-light800_dark300 text-dark400_light500 rounded-md border-none px-4 py-2 uppercase flex flex-row gap-2'>
@@ -57,7 +61,12 @@ export default function TagCard({
 
   if (compact) {
     return isButton ? (
-      <button className='flex justify-between gap-2'>{content}</button>
+      <button
+        onClick={(e) => handleButtonClick(e)}
+        className='flex justify-between gap-2'
+      >
+        {content}
+      </button>
     ) : (
       <Link href={ROUTES.TAGS(_id)} className='flex justify-between gap-2'>
         {content}

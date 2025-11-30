@@ -1,4 +1,4 @@
-import { model, models, Schema, Types } from "mongoose";
+import { Document, model, models, Schema, Types } from "mongoose";
 
 export type TInteraction = {
   user: Types.ObjectId;
@@ -6,6 +6,8 @@ export type TInteraction = {
   actionId: Types.ObjectId;
   actionType: "question" | "answer";
 };
+
+export type TInteractionDocument = TInteraction & Document;
 
 const InteractionSchema = new Schema<TInteraction>(
   {

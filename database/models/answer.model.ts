@@ -1,4 +1,4 @@
-import { model, models, Schema, Types } from "mongoose";
+import { model, models, Schema, Types, Document } from "mongoose";
 
 export type TAnswer = {
   author: Types.ObjectId;
@@ -7,6 +7,8 @@ export type TAnswer = {
   upvotes: number;
   downvotes: number;
 };
+
+export type TAnswerDocument = TAnswer & Document;
 
 const AnswerSchema = new Schema<TAnswer>(
   {

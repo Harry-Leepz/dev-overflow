@@ -1,17 +1,19 @@
-import { model, models, Schema, Types } from "mongoose";
+import { model, models, Schema, Types, Document } from "mongoose";
 
 export type TVote = {
   author: Types.ObjectId;
-  id: Types.ObjectId;
-  type: "question" | "answer";
+  actionId: Types.ObjectId;
+  actionType: "question" | "answer";
   voteType: "upvote" | "downvote";
 };
+
+export type TVoteDocument = TVote & Document;
 
 const VoteSchema = new Schema<TVote>(
   {
     author: { type: Schema.Types.ObjectId, ref: "User", required: true },
-    id: { type: Schema.Types.ObjectId, required: true },
-    type: { type: String, enum: ["question", "answer"], required: true },
+    actionId: { type: Schema.Types.ObjectId, required: true },
+    actionType: { type: String, enum: ["question", "answer"], required: true },
     voteType: { type: String, enum: ["upvote", "downvote"], required: true },
   },
   { timestamps: true }

@@ -1,15 +1,17 @@
-import { model, models, Schema } from "mongoose";
+import { model, models, Schema, Document } from "mongoose";
 
 export type TUser = {
   name: string;
   username: string;
   email: string;
   bio?: string;
-  image: string;
+  image?: string;
   location?: string;
   portfolio?: string;
-  reputation: number;
+  reputation?: number;
 };
+
+export type TUserDocument = TUser & Document;
 
 const UserSchema = new Schema(
   {
@@ -17,7 +19,7 @@ const UserSchema = new Schema(
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     bio: { type: String },
-    image: { type: String, required: true },
+    image: { type: String },
     location: { type: String },
     portfolio: { type: String },
     reputation: { type: Number, default: 0 },

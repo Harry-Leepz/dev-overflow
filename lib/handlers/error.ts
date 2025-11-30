@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { RequestError, ValidationError } from "../http-errors";
-import { ZodError } from "zod";
+import { ZodError, z } from "zod";
 
 export type ResponseType = "api" | "server";
 
@@ -37,8 +37,10 @@ export default function handleError(
   }
 
   if (error instanceof ZodError) {
+    const { fieldErrors } = z.flattenError(error);
+
     const validationError = new ValidationError(
-      error.flatten().fieldErrors as Record<string, string[]>
+      fieldErrors as Record<string, string[]>
     );
 
     return formatResponse(

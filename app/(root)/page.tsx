@@ -6,9 +6,6 @@ import ROUTES from "@/constants/routes";
 import Search from "@/components/search";
 import Filters from "@/components/filters";
 import QuestionCard from "@/components/cards/question-card";
-import handleError from "@/lib/handlers/error";
-import { ValidationError } from "@/lib/http-errors";
-import dbConnnect from "@/lib/mongoose";
 
 const questions = [
   {
@@ -51,24 +48,11 @@ const questions = [
   },
 ];
 
-const test = async () => {
-  try {
-    throw new ValidationError({
-      title: ["Required"],
-      description: ["Must be at least 10 characters."],
-    });
-  } catch (error) {
-    return handleError(error);
-  }
-};
-
 type HomeProps = {
   searchParams: Promise<{ [key: string]: string }>;
 };
 
 export default async function Home({ searchParams }: HomeProps) {
-  await test();
-
   const { query = "", filter = "" } = await searchParams;
 
   const filteredQuestions = questions.filter((question) => {
